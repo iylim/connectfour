@@ -1,13 +1,21 @@
+:root {
+  --p1-color: gold;
+  --p2-color: red;
+  --bg-color:  rgb(98, 30, 255);
+}
+
 #board {
   display: grid;
   grid-template-rows: repeat(6, 100px);
   grid-template-columns: repeat(7, 100px);
-  margin: auto;
+  /* margin: auto; */
   max-width: 700px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1)
 }
 
 .slot {
-  background-color: dodgerblue;
+  background-color: var(--bg-color);
+  padding: 10px;
 }
 
 .slot label {
@@ -16,4 +24,17 @@
   height: 100%;
   border-radius: 100%;
   background-color: white;
+  box-shadow: inset 2px 2px 3px 2px rgba(0, 0, 0, 0.2)
+}
+
+.slot label.p1 {
+  background-color: var(--p1-color);
+}
+
+.slot label.p2 {
+  background-color: var(--p2-color);
+}
+
+.slot input[type=checkbox] {
+  display: none;
 }
