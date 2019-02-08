@@ -7,4 +7,8 @@ Made with HTML, CSS, JS, and :heart:
 - [x] Styles
 - [ ] Generate Board
 - [ ] Turn logic
-- [ ] Win logic
+- [ ] selecting input toggles color
+- [ ] change who's turn it is
+- [ ] change who's turn is displayed
+- [ ] disable invalid inputs
+- [ ] Win logic 
