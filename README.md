@@ -3,7 +3,7 @@ Connect Four
 Made with HTML, CSS, JS, and :heart:
 
 ## TODO
-- [ ] Markup
+- [X] Markup
 - [ ] Styles
 - [ ] Generate Board
 - [ ] Turn logic
