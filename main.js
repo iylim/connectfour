@@ -1,13 +1,23 @@
+// constant varaiables
 const BOARDCOLS = 7;
 const BOARDROWS = 6;
+let player1Turn = true;
 
+// dom elements
 const board = document.getElementById('board');
 const playerIndicator = document.getElementById('player-indicator');
+const turnIndicator = document.getElementById('turn-indicator');
 
+// event listeners
 document.getElementById('reset').addEventListener('click', reset);
+document.querySelectorAll('.slot input[type=checkbox]').forEach(input => {
+  input.addEventListener('change', runTurn);
+});
+
 // setup board
 function initialize() {
   let boardHTML = '';
+  turnIndicator.innerHTML = `<span class="player1" id="player-indicator">Player 1</span> Turn`
   for (let row = BOARDROWS - 1; row >= 0; row--) {
     // iterate over rows, going down
     for (let col = 0; col < BOARDCOLS; col++) {
@@ -25,18 +35,27 @@ function initialize() {
   board.innerHTML = boardHTML;
 }
 
-let player1Turn = true;
-function runTurn(input) {
+function runTurn(event) {
+  var input = event;
+  const player = player1Turn ? 'player1' : 'player2';
+
   // change color of label
-  input.parentElement.className = player1Turn ? 'player1' : 'player2';
+  input.parentElement.className = player;
 
   // disable the input
   input.disabled = true;
-  // enable the slot at (row + 1, col)
-  const { col, row } = input.dataset;
-  // check if input is on the top row
+
+  // now enable it's neighbor at (col, row + 1)
+  // get the col and row of our input
+  let { col, row } = input.dataset;
+  // convert them into numbers
+  col = parseInt(col);
+  row = parseInt(row);
+
+//  // check if input is on the top row
   if (row < BOARDROWS - 1) {
-    const neighbor = document.getElementById(`slot${col}${parseInt(row) + 1}`);
+    // enable the slot at (row + 1, col)
+    const neighbor = getSlotElement(col, parseInt(row) + 1); // document.getElementById(`slot${col}${parseInt(row) + 1}`);
     neighbor.disabled = false;
   }
 
@@ -44,8 +63,6 @@ function runTurn(input) {
   const isWin = checkWin(parseInt(col), parseInt(row), player1Turn ? 'player1' : 'player2');
   if (isWin) {
     // update win text
-    const turnIndicator = document.getElementById('turn-indicator');
-    const player = player1Turn ? 'player1' : 'player2';
     turnIndicator.innerHTML = `🎉 <span class="${player}" id="player-indicator">${player}</span> wins 🎉`;
 
     // get all checkboxs
@@ -54,10 +71,8 @@ function runTurn(input) {
     checkboxes.forEach(checkbox => {
       checkbox.disabled = true;
     });
-
     return;
   }
-  // update win text (win celebrations)
 
   // change whose turn it is
   player1Turn = !player1Turn;
@@ -153,9 +168,13 @@ function checkUpLeft(col, row, currPlayer) {
   return sameColorNeighbors >= 3;
 }
 
+function getSlotElement(col, row) {
+  return document.getElementById(`slot${col}${row}`);
+}
+
 function reset() {
   initialize();
-  turnIndicator.innerHTML = `<span class="player1" id="player-indicator">Player 1 Turn</span>`;
+  player1Turn = true;
 }
 
 initialize();
