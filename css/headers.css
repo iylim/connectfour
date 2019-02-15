@@ -15,10 +15,10 @@ h2#turn-indicator {
   box-shadow: 2px 2px 2px  2px rgba(0, 0, 0, 0.1);
 }
 
-h2#turn-indicator #player-indicator.p1 {
+h2#turn-indicator #player-indicator.player1 {
   color: var(--p1-color);
 }
 
-h2#turn-indicator #player-indicator.p2 {
+h2#turn-indicator #player-indicator.player2 {
   color: var(--p2-color);
 }
