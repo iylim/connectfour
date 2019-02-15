@@ -13,3 +13,4 @@ Made with HTML, CSS, JS, and :heart:
 - [x] disable invalid inputs
 - [x] Win logic 
 - [ ] Timer
+
