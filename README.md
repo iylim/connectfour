@@ -11,4 +11,5 @@ Made with HTML, CSS, JS, and :heart:
 - [x] change who's turn it is
 - [x] change who's turn is displayed
 - [x] disable invalid inputs
-- [ ] Win logic 
+- [x] Win logic 
+- [ ] Timer
