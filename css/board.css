@@ -31,3 +31,13 @@
 .slot input[type=checkbox] {
   display: none;
 }
+
+#reset {
+  border-radius: 10px;
+  border: 2px solid white;
+  margin: 15px;
+  padding: 10px;
+  background-color: var(--bg-color);
+  color: white;
+  font-size: 18px;
+}
