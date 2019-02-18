@@ -1,6 +1,7 @@
 import { runTurn } from './turn-logic.js';
 import { BOARDCOLS, BOARDROWS, turnIndicator } from './helpers.js';
 import gameState from './gamestate.js';
+import { highlightColumn, unhighlightColumn } from './highlight.js';
 
 const board = document.getElementById('board');
 
@@ -16,7 +17,7 @@ export function initialize() {
     for (let col = 0; col < BOARDCOLS; col++) {
       // iterate over columns, going up
       boardHTML += `
-      <div class="slot">
+      <div class="slot" data-row="${row}" data-col="${col}">
       <label for="slot${col}${row}">
       <input type="checkbox" ${row > 0 ? 'disabled' : ''} name="slot${col}${row}" id="slot${col}${row}" data-row="${row}" data-col="${col}" >
       </label>
@@ -30,7 +31,12 @@ export function initialize() {
   document.querySelectorAll('input').forEach(input => {
     input.addEventListener('change', runTurn);
   });
+  document.querySelectorAll('.slot').forEach(slot => {
+    slot.addEventListener('mouseenter', highlightColumn);
+    slot.addEventListener('mouseleave', unhighlightColumn);
+  });
 }
+
 
 /**
  *  Reset game, set player1 to true
