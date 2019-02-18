@@ -37,7 +37,7 @@
   border: 2px solid white;
   margin: 15px;
   padding: 10px;
-  background-color: var(--bg-color);
+  background-color: #333;
   color: white;
   font-size: 18px;
 }

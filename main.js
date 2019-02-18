@@ -9,7 +9,6 @@ const playerIndicator = document.getElementById('player-indicator');
 const turnIndicator = document.getElementById('turn-indicator');
 
 // event listeners
-document.getElementById('reset').addEventListener('click', reset);
 document.querySelectorAll('.slot input[type=checkbox]').forEach(input => {
   input.addEventListener('change', runTurn);
 });
@@ -92,7 +91,8 @@ function checkWin(col, row, currPlayer) {
 }
 
 function checkDown(col, row, currPlayer) {
-  if (row < 3) return false; // can't connect 4 if it's only stacked 3 or less
+  if (row < 3) return false; 
+  // can't connect 4 if it's only stacked 3 or less
 
   for (let j = row - 1; j > row - 4; j--) {
     const currSlotPlayer = document.getElementById(`slot${col}${j}`).parentElement.className;
