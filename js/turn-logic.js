@@ -2,6 +2,28 @@ import { checkWin } from './win-logic.js';
 import { getSlotElement, BOARDROWS, turnIndicator } from './helpers.js';
 import gameState from './gamestate.js';
 
+// export function findRow(event) {
+//   const input = event.target;
+//   for (let row = BOARDROWS - 1; row >= 0; row--) {
+//     let selected = getSlotElement(input.dataset.col, row)
+//     if (selected.hasAttribute(`disabled:''`)) {
+//       return console.log('disabled');
+//     } else {
+//       runTurn(event);
+//     }
+//   }
+// }
+
+export function animate(event) {
+  const piece = event.target;
+  for (let row = BOARDROWS -1; row >= 0; row--) {
+    let count = 1;
+    return count++;
+  }
+  let selected = getSlotElement(piece.dataset.col, piece.dataset.row);
+  //add class to animate
+  //style.transform translatey();
+}
 
 /**
  * changes label, disables it, enables neighbors, check if win, change players, change text
@@ -11,6 +33,10 @@ import gameState from './gamestate.js';
 export function runTurn(event) {
   const input = event.target;
   const player = gameState.getPlayer1Turn() ? 'player1' : 'player2';
+  
+  // click column check row
+  // transitions
+
 
   // change color of label
   input.parentElement.className = player;
