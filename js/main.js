@@ -1,4 +1,4 @@
-import { runTurn } from './turn-logic.js';
+import { findRow, runTurn } from './turn-logic.js';
 import { BOARDCOLS, BOARDROWS, turnIndicator } from './helpers.js';
 import gameState from './gamestate.js';
 import { highlightColumn, unhighlightColumn } from './highlight.js';
@@ -27,16 +27,18 @@ export function initialize() {
   }
   // set the board's HTML
   board.innerHTML = boardHTML;
-  //add event listener
+  //add event listeners to imput
   document.querySelectorAll('input').forEach(input => {
     input.addEventListener('change', runTurn);
+    input.addEventListener('click', animate);
   });
+  
+
   document.querySelectorAll('.slot').forEach(slot => {
     slot.addEventListener('mouseenter', highlightColumn);
     slot.addEventListener('mouseleave', unhighlightColumn);
   });
 }
-
 
 /**
  *  Reset game, set player1 to true
@@ -45,8 +47,6 @@ export function reset() {
   initialize();
   gameState.resetPlayer();
 }
-
-
 
 // add event listeners
 document.getElementById('reset').addEventListener('click', reset);
