@@ -16,6 +16,7 @@ class GameState {
   switchTurns() {
     this.player1Turn = !this.player1Turn;
   }
+
 }
 
 const gameState = new GameState('player1', 'player2', true);
